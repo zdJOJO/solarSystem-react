@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { NavBar, Icon } from 'antd-mobile';
 
 class TopNavBar extends Component{
+
     render(){
         return(
             <NavBar leftContent="返回" mode="light"
@@ -16,7 +17,7 @@ class TopNavBar extends Component{
                             <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} />,
                             <Icon key="1" type="ellipsis" />
                         ]}
-            >这个是NAV</NavBar>
+            >{this.props.title}</NavBar>
         )
     }
 }

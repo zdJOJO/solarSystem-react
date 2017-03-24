@@ -1,7 +1,9 @@
 /**
  * Created by Administrator on 2017/03/23 0023.
  */
+
 import React, { Component } from 'react'
+import { hashHistory } from 'react-router'
 
 import { TabBar, Icon } from 'antd-mobile';
 
@@ -21,13 +23,13 @@ const menuList = [
                             height: '0.44rem',
                             background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  0.42rem 0.42rem no-repeat' }}
         />),
-        tab: 'blueTab'
+        path: '/'
     },
     {
         title: '第二',
         icon: (<Icon type="koubei-o" size="md" />),
         selectedIcon: (<Icon type="koubei" size="md" />),
-        tab: 'redTab'
+        path: '/page/'
     },
     {
         title: '第三',
@@ -41,13 +43,13 @@ const menuList = [
               height: '0.44rem',
               background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  0.42rem 0.42rem no-repeat' }}
         />),
-        tab: 'greenTab'
+        path: '/page/page3'
     },
     {
         title: '第四',
         icon: ({uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg'}),
         selectedIcon: ({uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg'}),
-        tab: 'yellowTab'
+        path: '/page/page4'
     }
 ];
 
@@ -55,13 +57,24 @@ class Menu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTab: 'redTab',
+            selectedTab: '/',
             hidden: false
         };
     }
 
+    componentDidMount(){
+        this.setState({
+            selectedTab: location.hash.split('#')[1]
+        });
+    }
+
     handleChangeMenu(pageText) {
-        console.log(pageText);
+        this.props.changeMenu(pageText);
+
+        hashHistory.push({
+            pathname: pageText
+        });
+
         this.setState({
             selectedTab: pageText
         });
@@ -83,8 +96,8 @@ class Menu extends Component {
                                 key={index}
                                 icon={menu.icon}
                                 selectedIcon={menu.selectedIcon}
-                                selected={this.state.selectedTab === menu.tab}
-                                onPress={this.handleChangeMenu.bind(this, menu.tab)}
+                                selected={this.state.selectedTab === menu.path}
+                                onPress={this.handleChangeMenu.bind(this, menu.path)}
                                 data-seed="logId"
                             />
                         )

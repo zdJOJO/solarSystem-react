@@ -3,15 +3,40 @@
  */
 import React, { Component } from 'react';
 
-import Hoem from '../home'
+import TopNavBar from '../../components/topNavBar'
 import Menu from '../../components/menu/menu'
 
 class MainPage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: 'PAGE2'
+        };
+    }
+
+    handleChangeNavBarTitle(title){
+        switch (title){
+            case '/page/':
+                this.setState({title: 'PAGE2'});
+                break;
+            case '/page/page3':
+                this.setState({title: 'PAGE3'});
+                break;
+            case '/page/page4':
+                this.setState({title: 'PAGE4'});
+                break
+        }
+    }
+
     render() {
         return (
             <div className="content">
-                <Hoem />
-                <Menu/>
+                <TopNavBar title={this.state.title}/>
+                    {this.props.children}
+                <Menu changeMenu={(pageText)=>{
+                    this.handleChangeNavBarTitle(pageText)
+                }}/>
             </div>
         );
     }
