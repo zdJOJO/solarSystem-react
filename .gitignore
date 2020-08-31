@@ -21,3 +21,4 @@ npm-debug.log
 .module-cache
 .*.sw*
 dist
+yarn-error.log

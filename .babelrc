@@ -1,16 +1,38 @@
 {
-  	"presets": [
-  		"react", 
-  		"es2015",
-  	 	"stage-0"
-  	],
+	"presets": [
+		"react",
+		"es2015",
+		"stage-0"
+	],
 	"env": {
 		"development": {
-			"presets": ["react-hmre"]
+			"presets": [
+				"react-hmre" // 热替换
+			]
 		}
 	},
-  	"plugins": [
-        "transform-decorators-legacy",
-        "transform-class-properties"
-    ]
+	"plugins": [
+		"external-helpers",
+		[
+			"babel-plugin-transform-runtime",
+			{
+				"polyfill": false
+			}
+		],
+		[
+			"transform-runtime",
+			{
+				"polyfill": false
+			}
+		],
+		"transform-decorators-legacy",
+		"transform-class-properties",
+		[
+			"import",
+			{
+				"libraryName": "antd-mobile",
+				"style": true
+			}
+		] // `style: true` 会加载 less 文件
+	]
 }
