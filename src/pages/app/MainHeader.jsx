@@ -53,15 +53,15 @@ function MainTabBar({ title, isShowBack, handleClick }) {
   return (
     <NavBar
       mode="dark"
-      // leftContent={isShowBack ? <Icon type="left" size="md" /> : ""}
+      leftContent={isShowBack ? <Icon type="left" size="md" /> : ""}
       rightContent={[
-        <Icon 
-        key="0" 
-        type="search" 
-        style={{ marginRight: '16px' }} 
-        onClick={()=>{
-          Toast.info("搜索 功能暂未开发")
-        }} />,
+        <Icon
+          key="0"
+          type="search"
+          style={{ marginRight: '16px' }}
+          onClick={() => {
+            Toast.info("搜索 功能暂未开发")
+          }} />,
         <NavBarPopContent key="1" />
       ]}
       onLeftClick={(e) => {

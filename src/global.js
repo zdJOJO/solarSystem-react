@@ -1,3 +1,5 @@
+import moment from "moment"
+
 import home from '../assets/images/home.png';
 import home_fill from '../assets/images/home_fill.png';
 import address from '../assets/images/address.png';
@@ -45,6 +47,9 @@ export const ROUTE_PATH = {
   SETTING: '/setting',
   CART: '/cart',
   LOCATION: '/location',
+
+  COMMENT: '/comment',
+  COMMENT_LIST: '/comment/:id',
 
   HOME_NEWS: '/home/news',
   HOME_NEWS_ID: '/home/news/:id',
@@ -172,6 +177,18 @@ export const myInfoMenes = [
     imgName: my_bag,
   },
 ]
+
+// 是按转换
+export const transformTime = (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") => moment(dataStr).format(pattern);
+
+// 随即姓名生成器
+export const getRandomName = () => {
+  const firstname = ["李", "王", "张", "刘", "陈", "杨", "赵", "黄", "周", "吴", "徐", "孙", "胡", "朱", "高", "林", "何", "郭"];
+  const lastName = ["建华", "小明", "小红", "有为", "建刚", "小刚", "建国", "文革", '援朝', '国庆', '国富', '梅', '强', '琴琴', '红雷', '德华', '悟空'];
+  var str1 = firstname[Math.floor(Math.random() * (firstname.length))];
+  var str2 = lastName[Math.floor(Math.random() * (lastName.length))];
+  return `${str1} ${str2}`;
+}
 
 // 百度地图密钥
 export const baiduMap_AK = 'IcgnafKNldYZGjRjLiRqvcG09TQ5OAOd';

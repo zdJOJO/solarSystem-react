@@ -47,7 +47,7 @@ npm run build
 
 2. http 异步请求框架
 
-    ["fetch"]() :  "^0.20.0"
+    ["axios"]() :  "^0.20.0"
 
 3. UI库
 
@@ -74,35 +74,31 @@ npm run build
 
 
 
+# 知识点
 
-# 如何安装热替换
-
-1) 在根目录新建一个Babel的配置文件:  `.babelrc` 文件。
-
-2) 安装 `npm install babel-plugin-react-transform babel-preset-react-hmre react-transform-hmr --save-dev`
-
-3) `.babelrc` 文件配置如下:
+1. 需要用到 AbortController, 来实现组件卸载时直接中断请求，避免组件卸载之后继续更新状态。
 
 ```
-{
-  "presets": [
-    "react",
-    "es2015",
-    "stage-0"
-  ],
-	"env": {
-		"development": {
-			"presets": ["react-hmre"]
-		}
-	},
-  "plugins": [
-      "transform-decorators-legacy",
-      "transform-class-properties"
-  ]
-}
+useEffect(() => {
+    let isUnmounted = false;
+    const abortController = new AbortController(); // 创建
+    (async () => {
+        const res = await fetch(SOME_API, {
+            singal: abortController.singal, // 当做信号量传入
+        });
+        const data = await res.json();
+        if (!isUnmounted) {
+            setValue(data.value);
+            setLoading(false);
+        }
+    })();
+ 
+    return () => {
+        isUnmounted = true;
+        abortController.abort(); // 在组件卸载时中断
+    }
 ```
-
-
+singal 的实现依赖于实际发送请求使用的方法，如上述例子的 fetch 方法接受 singal 属性。 如果使用的是 axios，它的内部已经包含了 axios.CancelToken，可以直接使用。
 
 
 

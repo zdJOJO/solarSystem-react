@@ -1,0 +1,61 @@
+.myLoading {
+
+  margin: 0.2rem 0;
+
+  @keyframes k-loadingP {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    25% {
+      transform: translateY(-3px);
+      opacity: .5;
+    }
+
+    50% {
+      transform: translateY(0px);
+      opacity: 0;
+    }
+
+    75% {
+      transform: translateY(3px);
+      opacity: .5;
+    }
+
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+
+  .k-line {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 3px;
+    background-color: #ffd000;
+  }
+
+  .k-line11-1 {
+    animation: k-loadingP 2s infinite;
+  }
+
+  .k-line11-2 {
+    animation: k-loadingP 2s infinite;
+    animation-delay: .15s;
+  }
+
+  .k-line11-3 {
+    animation: k-loadingP 2s infinite;
+    animation-delay: .30s;
+  }
+
+  .k-line11-4 {
+    animation: k-loadingP 2s infinite;
+    animation-delay: .45s;
+  }
+
+}

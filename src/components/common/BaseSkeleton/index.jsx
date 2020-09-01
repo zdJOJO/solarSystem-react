@@ -45,12 +45,10 @@ const Circle = ({ width, height }) => (
 
 const BaseSkeleton = ({ type, width, height, padding }) => {
   let component = <Default width={width} height={height} />;
-  const getCpt = () => {
-    if (type === 'square') {
-      component = <Square width={width} height={height} />
-    } else if (ype === 'square') {
-      component = <Circle width={width} height={height} />
-    }
+  if (type === 'square') {
+    component = <Square width={width} height={width} />
+  } else if (type === 'circle') {
+    component = <Circle width={width} height={width} />
   }
   return (
     <div className="skeleton-loading">
@@ -72,7 +70,7 @@ const BaseSkeleton = ({ type, width, height, padding }) => {
 }
 
 BaseSkeleton.defaultProps = {
-  type: "default",
+  type: "default",  // default | square | circle
   width: "4rem",
   height: "0.4rem",
   padding: "0.2rem 0.2rem 0 0"

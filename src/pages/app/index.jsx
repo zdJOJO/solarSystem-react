@@ -8,6 +8,8 @@ import MainTabBar from './MainTabBar';
 
 import { themeColor, fontColor, tabBarElements } from '../../global';
 
+import '../../../assets/css/index';
+
 
 function App() {
   let history = useHistory();
@@ -43,7 +45,7 @@ function App() {
     <div className="app">
       <MainHeader
         title={navTitle}
-        isShowBack={location.pathname !== '/'}
+        isShowBack={location.pathname !== '/' && location.pathname !== '/location' && location.pathname !== '/cart' && location.pathname !== '/user'}
         handleClick={goBack}
       />
 
