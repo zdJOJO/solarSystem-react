@@ -1,7 +1,3 @@
-# antd-mobile with webpack
-
-basic webpack proj demo
-
 ### Install & Start
 
 ```shell
