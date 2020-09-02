@@ -60,14 +60,14 @@ export const ROUTE_PATH = {
   HOME_GODDS: '/home/goods',
   HOME_GODDS_ID: '/home/goods/:id',
 
-  HOME_GODDS_DETAIL_ID: {
-    path: '/home/goodsdesc/:id',
-    name: 'goodsdesc'
-  },
-  HOME_GODDS_COMMENT_ID: {
-    path: '/home/goodscomment/:id',
-    name: 'goodscomment'
-  }
+  // HOME_GODDS_DETAIL_ID: {
+  //   path: '/home/goodsdesc/:id',
+  //   name: 'goodsdesc'
+  // },
+  // HOME_GODDS_COMMENT_ID: {
+  //   path: '/home/goodscomment/:id',
+  //   name: 'goodscomment'
+  // }
 }
 
 // tabBar 导航

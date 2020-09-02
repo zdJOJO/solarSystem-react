@@ -9,6 +9,13 @@
   },
   "author": "zdjojo",
   "license": "MIT",
+  "theme": {
+    "brand-primary": "#ffd000",
+    "brand-primary-tap": "#e2b902",
+    "brand-wait": "#ffd000",
+    "font-size-heading": "0.3rem",
+    "font-size-subhead": "0.24rem"
+  },
   "scripts": {
     "start": "webpack-dev-server --progress --inline --colors --config config/webpack.dev.js",
     "build": "webpack -p --progress --colors"
@@ -54,7 +61,6 @@
     "rc-form": "^2.4.11",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-lazyload": "^3.0.0",
     "react-router-dom": "^5.2.0"
   },
   "bugs": {

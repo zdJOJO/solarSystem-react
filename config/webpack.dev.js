@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-02 15:25:59
+ * @LastEditTime: 2020-09-03 00:32:50
  * @FilePath: \solarSystem-react\config\webpack.dev.js
  */
 const path = require('path')
@@ -22,6 +22,8 @@ const otherPlugins = process.argv[1].indexOf('webpack-dev-server') >= 0 ? [] : [
   }), // remove it in production environment.
 ];
 
+const theme = require('../package.json').theme;
+
 const postcssOpts = {
   ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
   plugins: () => [
@@ -32,7 +34,7 @@ const postcssOpts = {
   ],
 };
 
-const port = 3010;
+const port = 3001;
 
 module.exports = {
 
@@ -106,6 +108,7 @@ module.exports = {
           },
           {
             loader: 'less-loader',
+            options: { modifyVars: theme }
           }
         ]
       },

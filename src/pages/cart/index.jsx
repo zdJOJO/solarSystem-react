@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Flex, Card, Button, SwipeAction, Checkbox } from 'antd-mobile';
 
 import BaseNumberInput from '../../components/common/BaseNumberInput/index';
+import BaseEmpety from '../../components/common/BaseEmpety';
 import { GOODS } from '../../httpConfig/api';
 import http from '../../httpConfig/http';
 import AppDispatch from '../bus';
@@ -118,6 +119,7 @@ function Cart() {
   useEffect(() => {
     let unmounted = false;
     let ids = cartData.map(ele => ele.id).join(',');
+    if (ids.length === 0) return;
     const getThumbImgs = async () => {
       const result = http.get(`${GOODS.CART_LIST}${ids}`);
       if (!!result && result.length > 0) {
@@ -180,7 +182,7 @@ function Cart() {
   }
 
   return (
-    <div className="page cart">
+    <div className='page cart'>
       {
         cartData.map(item =>
           <CartItem
@@ -190,9 +192,10 @@ function Cart() {
           />
         )
       }
-      <Button type="warning">去结算( {totalNum} ) ￥ {totalPrice}</Button>
+      {cartData.length !== 0 && <Button type="warning">去结算( {totalNum} ) ￥ {totalPrice}</Button>}
+      {cartData.length === 0 && <BaseEmpety text="您的购物包空空如也" />}
     </div>
   )
 }
 
-export default Cart;
+export default React.memo(Cart);

@@ -14,6 +14,11 @@ import Comments from "bundle-loader?lazy&name=comments!../comments";
 import NewsList from 'bundle-loader?lazy&name=newslist!../news/NewsList';
 import NewsInfo from 'bundle-loader?lazy&name=newsinfo!../news/NewsInfo';
 
+import Photoes from 'bundle-loader?lazy&name=photoes!../photoes';
+
+import GoodsList from 'bundle-loader?lazy&name=goodsList!../goods/GoodsList';
+import GoodsInfo from 'bundle-loader?lazy&name=goodsInfo!../goods/GoodInfo';
+
 
 function MainContent() {
   return (
@@ -28,11 +33,10 @@ function MainContent() {
         <Route exact path={ROUTE_PATH.HOME_NEWS} component={createRouteView(NewsList)} />
         <Route exact path={ROUTE_PATH.HOME_NEWS_ID} component={createRouteView(NewsInfo)} />
 
-        {/* <Route path={ROUTE_PATH.HOME_GODDS} component={createRouteView()} />
-        <Route path={ROUTE_PATH.HOME_GODDS_ID} component={createRouteView()} />
+        <Route exact path={ROUTE_PATH.HOME_GODDS} component={createRouteView(GoodsList)} />
+        <Route exact path={ROUTE_PATH.HOME_GODDS_ID} component={createRouteView(GoodsInfo)} />
 
-        <Route path={ROUTE_PATH.HOME_PHOTOES} component={createRouteView()} />
-        <Route path={ROUTE_PATH.HOME_PHOTOE_ID} component={createRouteView()} /> */}
+        <Route path={ROUTE_PATH.HOME_PHOTOES} component={createRouteView(Photoes)} />
 
 
         <Redirect from="/*" to="/" />
@@ -42,4 +46,4 @@ function MainContent() {
 }
 
 
-export default MainContent;
+export default React.memo(MainContent);

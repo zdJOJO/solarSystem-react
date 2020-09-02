@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 22:49:22
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-01 21:04:27
+ * @LastEditTime: 2020-09-02 20:13:34
  */
 
 import axios from 'axios';
@@ -62,10 +62,10 @@ const http = {
         if (response.data.status === 0) {
           if (response.data.message.length > 0) {
             if (isMsg) {
-              Toast.success(`为您跟新${response.data.message.length} 条信息 😀`)
+              Toast.success(`为您跟新${response.data.message.length} 条信息 😀`, 1.5)
             }
           } else {
-            Toast.info(`已无更多信息 🙂`)
+            Toast.info(`已无更多信息 🙂`, 1.5)
           }
           return response.data.message
         } else {

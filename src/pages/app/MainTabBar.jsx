@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { TabBar } from 'antd-mobile';
 
@@ -18,8 +18,9 @@ const IconCell = ({ icon }) => {
 }
 
 function MainTabBar(props) {
-  const { cartTotalNum, defaultSelectedName, tabBarElements, unselectedTintColor, tintColor, handleClick } = props;
-  const [selectedTabName, set_SelectedTabName] = useState(defaultSelectedName);
+  const { cartTotalNum, defaultSelectedPath, tabBarElements, unselectedTintColor, tintColor, handleClick } = props;
+
+  const [selectedPath, set_selectedPath] = useState(defaultSelectedPath);
   return (
     <div className="tabBarContainer">
       <TabBar
@@ -37,10 +38,10 @@ function MainTabBar(props) {
                 title={item.name}
                 icon={<IconCell icon={item.icon} />}
                 selectedIcon={<IconCell icon={item.activeIcon} />}
-                selected={selectedTabName === item.name}
+                selected={selectedPath === item.routePath}
                 badge={(item.ball && cartTotalNum > 0) ? cartTotalNum : 0}
                 onPress={() => {
-                  set_SelectedTabName(item.name);
+                  set_selectedPath(item.routePath);
                   handleClick(item);
                 }}
               />

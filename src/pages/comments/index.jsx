@@ -130,14 +130,6 @@ function Comments() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   let isUnmounted = false;
-  //   postComments();
-  //   return () => {
-  //     isUnmounted = false;
-  //   }
-  // }, []);
-
   return (
     <div className="page comment">
       <div className="cmt-container">
@@ -155,7 +147,9 @@ function Comments() {
           <div
             style={{
               height: '0.64rem',
-              lineHheight: '0.32rem'
+              lineHheight: '0.32rem',
+              textAlign: "right",
+              marginTop: 10
             }}
           >
             <Button

@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { useLocation, useHistory } from "react-router-dom";
 
 
@@ -12,26 +12,35 @@ import AppDispatch from '../bus';
 import '../../../assets/css/index';
 
 
+
 function reducer(state, action) {
   switch (action.type) {
     case 'SET_TOTALNUM':
-      return { cartTotalNum: action.cartTotalNum };
+      return {
+        ...state,
+        cartTotalNum: action.cartTotalNum
+      };
     case 'SET_NAVTITLE':
-      return { navTitle: action.navTitle };
+      console.log(action.navTitle);
+      return {
+        ...state,
+        navTitle: action.navTitle
+      };
     default:
       throw new Error();
   }
 }
 
+const initialState = {
+  cartTotalNum: 0,
+  navTitle: ''
+}
 
 function App() {
   let history = useHistory();
   let location = useLocation();
 
-  const [state, dispatch] = useReducer(reducer, {
-    cartTotalNum: 0,
-    navTitle: ''
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     let cartData = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -41,25 +50,33 @@ function App() {
         num += ele.count
       }
     })
+    dispatch({ type: 'SET_NAVTITLE', navTitle: getTitleName(location.pathname) });
     dispatch({ type: 'SET_TOTALNUM', cartTotalNum: num });
   }, []);
 
 
   function goBack(event) {
-    // 不够完善 ， 如何监听 react-router 变化 ？？？
-    history.goBack()
+    history.go(-1);
   }
 
   function handleClickTabBar(item) {
     if (location.pathname === item.routePath) return;  // 避免重复点击同一个路由
     dispatch({ type: 'SET_NAVTITLE', navTitle: getTitleName(item.routePath) });
-    history.push(item.routePath);
+
+    // state 不奏效
+    history.push({
+      pathname: item.routePath,
+      query: {
+        from: location.pathname,
+        to: item.routePath
+      }
+    });
   }
   return (
     <div className="app">
       <MainHeader
         title={state.navTitle}
-        isShowBack={location.pathname !== '/'}
+        isShowBack={location.pathname !== '/' && location.pathname !== '/location' && location.pathname !== '/cart' && location.pathname !== '/user'}
         handleClick={goBack}
       />
 
@@ -69,7 +86,7 @@ function App() {
 
       <MainTabBar
         cartTotalNum={state.cartTotalNum}
-        defaultSelectedName={getTitleName(location.pathname)}
+        defaultSelectedPath={location.pathname}
         tabBarElements={tabBarElements}
         unselectedTintColor={fontColor}
         tintColor={themeColor}

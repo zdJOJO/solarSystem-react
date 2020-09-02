@@ -5,6 +5,7 @@ import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
 
 import BaseSkeleton from '../../components/common/BaseSkeleton/index';
 import BaseLoading from '../../components/common/BaseLoading/index';
+import BaseEmpety from '../../components/common/BaseEmpety';
 import { NEWS } from '../../httpConfig/api';
 import http from '../../httpConfig/http';
 import { transformTime, ROUTE_PATH } from '../../global';
@@ -78,6 +79,7 @@ function NewsList() {
         newList.map(news => <NewsListItem key={news.id} news={news} loading={loading} />)
       }
       {loading && <BaseLoading />}
+      {newList.length === 0 && <BaseEmpety text="暂无新闻" />}
     </div>
   )
 }

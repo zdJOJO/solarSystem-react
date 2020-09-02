@@ -6,7 +6,7 @@ import { themeColor } from '@/global';
 
 
 
-function BaseSwiper({ imgList }) {
+function BaseSwiper({ imgList, async }) {
 
   const [imgHeight, set_imgHeight] = useState(200)
 
@@ -26,13 +26,12 @@ function BaseSwiper({ imgList }) {
         }}
       >
         {imgList.map((val, index) => (
-          <a
-            key={val}
-            href="#"
+          <div
+            key={val + index}
             style={{ display: 'inline-block', width: '100%', height: imgHeight }}
           >
             <img
-              src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+              src={!async ? `https://zos.alipayobjects.com/rmsportal/${val}.png` : val.src}
               alt=""
               style={{ width: '100%', verticalAlign: 'top' }}
               onLoad={() => {
@@ -41,11 +40,15 @@ function BaseSwiper({ imgList }) {
                 set_imgHeight('auto')
               }}
             />
-          </a>
+          </div>
         ))}
       </Carousel>
     </div>
   )
+}
+
+BaseSwiper.defaultProps = {
+  async: false
 }
 
 export default BaseSwiper 
