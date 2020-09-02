@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
-import { Flex, Card, Button, Toast, SwipeAction, Checkbox, InputItem } from 'antd-mobile';
+import { Flex, Card, Button, SwipeAction, Checkbox } from 'antd-mobile';
 
-import BaseNumberInput from '../../components/common/BaseNumberInput';
-import { COMMENT } from '../../httpConfig/api';
+import BaseNumberInput from '../../components/common/BaseNumberInput/index';
+import { GOODS } from '../../httpConfig/api';
 import http from '../../httpConfig/http';
+import AppDispatch from '../bus';
 
 import './index.less';
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
+// 购物车颗粒组件
 function CartItem({ cart, handleChange }) {
 
   const [isChecked, set_isChecked] = useState(cart.selected)
@@ -68,7 +70,7 @@ function CartItem({ cart, handleChange }) {
               <Flex.Item style={{ flex: 2 }}>
                 <p className="flex-item price">价格：{cart.sell_price}</p>
               </Flex.Item>
-              <Flex.Item style={{ flex: 3 }}>
+              <Flex.Item style={{ flex: 4 }}>
                 <BaseNumberInput
                   label="数量:"
                   initialValue={cart.count}
@@ -90,17 +92,66 @@ function Cart() {
 
   // 看成异步请求的
   const [cartData, set_cartData] = useState(JSON.parse(localStorage.getItem('cart') || '[]'));
+  const [cartIds, set_cartIds] = useState([]);
   const [totalPrice, set_totalPrice] = useState(0);
+  const [totalNum, set_totalNum] = useState(0);
 
-  useEffect(() => {
-    console.log(cartData);
+  const dispatch = useContext(AppDispatch);
+
+  // 结算商品总数 | 总价格  type: price |  totalNum
+  const calculateTotalNum = (type) => {
     let price = 0;
+    let num = 0;
     cartData.forEach(ele => {
       if (ele.selected) {
-        price = price + ele.count * ele.sell_price
+        num += ele.count
+        price += ele.count * ele.sell_price;
       }
     })
-    set_totalPrice(price);
+    if (type === "price") {
+      return price
+    } else if (type === "totalNum") {
+      return num
+    }
+  }
+
+  useEffect(() => {
+    let unmounted = false;
+    let ids = cartData.map(ele => ele.id).join(',');
+    const getThumbImgs = async () => {
+      const result = http.get(`${GOODS.CART_LIST}${ids}`);
+      if (!!result && result.length > 0) {
+        result.forEach(k => {
+          cartData.forEach((ele, index) => {
+            if (k.id === ele.id) {
+              cartData[index] = {
+                ...cartData[index],
+                thumb_path: k.thumb_path
+              }
+            }
+          })
+        });
+        set_cartData([...cartData]);
+        set_cartIds(ids);
+      }
+    }
+    getThumbImgs();
+    return () => {
+      unmounted = true;
+    }
+  }, [cartIds])
+
+  useEffect(() => {
+    let price = 0;
+    let num = 0;
+    cartData.forEach(ele => {
+      if (ele.selected) {
+        num += ele.count
+        price += ele.count * ele.sell_price;
+      }
+    })
+    set_totalPrice(calculateTotalNum('price'));
+    set_totalNum(calculateTotalNum('totalNum'));
   }, [cartData]);
 
   const changeCarts = (type, id, _value) => {
@@ -124,6 +175,7 @@ function Cart() {
       })
     }
     set_cartData([...cartData]);
+    dispatch({ type: 'SET_TOTALNUM', cartTotalNum: calculateTotalNum('totalNum') });
     localStorage.setItem('cart', JSON.stringify([...cartData]));
   }
 
@@ -138,7 +190,7 @@ function Cart() {
           />
         )
       }
-      <Button type="warning">去结算: ￥ {totalPrice}</Button>
+      <Button type="warning">去结算( {totalNum} ) ￥ {totalPrice}</Button>
     </div>
   )
 }

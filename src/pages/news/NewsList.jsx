@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import { Card, WingBlank, WhiteSpace, Toast } from 'antd-mobile';
+import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
 
 import BaseSkeleton from '../../components/common/BaseSkeleton/index';
 import BaseLoading from '../../components/common/BaseLoading/index';

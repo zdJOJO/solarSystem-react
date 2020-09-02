@@ -17,7 +17,8 @@ const IconCell = ({ icon }) => {
   )
 }
 
-function MainTabBar({ defaultSelectedName, tabBarElements, unselectedTintColor, tintColor, handleClick }) {
+function MainTabBar(props) {
+  const { cartTotalNum, defaultSelectedName, tabBarElements, unselectedTintColor, tintColor, handleClick } = props;
   const [selectedTabName, set_SelectedTabName] = useState(defaultSelectedName);
   return (
     <div className="tabBarContainer">
@@ -37,7 +38,7 @@ function MainTabBar({ defaultSelectedName, tabBarElements, unselectedTintColor, 
                 icon={<IconCell icon={item.icon} />}
                 selectedIcon={<IconCell icon={item.activeIcon} />}
                 selected={selectedTabName === item.name}
-                badge={item.ball ? 20 : 0}
+                badge={(item.ball && cartTotalNum > 0) ? cartTotalNum : 0}
                 onPress={() => {
                   set_SelectedTabName(item.name);
                   handleClick(item);

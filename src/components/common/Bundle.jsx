@@ -22,6 +22,13 @@ class Bundle extends Component {
     }
   }
 
+  componentWillUnmount() {
+    // 组织异步操作
+    this.setState = (state, callback) => {
+      return
+    }
+  }
+
   load(props) {
     // 重置状态
     this.setState({

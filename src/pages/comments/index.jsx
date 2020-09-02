@@ -163,7 +163,7 @@ function Comments() {
               size="small"
               inline
               loading={state.isPostFetching}
-              disabled={state.isPostFetching}
+              disabled={!state.commentContent || state.isPostFetching}
               onClick={() => {
                 if (!!state.commentContent && !state.commentContent.trim()) {
                   Toast.info("请填写评论内容", 1.5)

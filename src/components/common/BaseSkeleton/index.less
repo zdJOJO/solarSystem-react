@@ -1,17 +1,17 @@
+@keyframes backpos {
+  from {
+    background-position-x: -4rem;
+  }
+
+  to {
+    background-position-x: calc(4rem + 100%);
+  }
+}
+
 .skeleton-loading {
   font-size: 0.24rem;
   background: #fff;
   position: relative;
-
-  @keyframes backpos {
-    from {
-      background-position-x: -4rem;
-    }
-
-    to {
-      background-position-x: calc(4rem + 100%);
-    }
-  }
 
   .skeleton-bac-animation {
     position: absolute;
@@ -24,32 +24,10 @@
         rgba(255, 255, 255, 0) 80%);
     background-size: 30% 100%;
     background-repeat: no-repeat;
-    -webkit-animation: backpos 0.9s ease-in-out 0s infinite;
-    animation: backpos 0.9s ease-in-out 0s infinite;
+    animation: backpos 1.4s ease-in-out 0s infinite;
   }
 
   .skeleton-bac-content {
     overflow: hidden;
   }
 }
-
-.skeleton-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.skeleton-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.skeleton-square-wrap {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-
-  .skeleton-square {
-    width: 100%;
-  }}

@@ -190,5 +190,29 @@ export const getRandomName = () => {
   return `${str1} ${str2}`;
 }
 
+// 根据路由获取名字
+export const getTitleName = (path) => {
+  switch (path) {
+    case '/':
+      return 'Solar System';
+    case '/location':
+      return '位置';
+    case '/cart':
+      return '购物袋';
+    case '/user':
+      return '我的';
+    case '/home/news':
+      return '今日要闻';
+    case '/home/goods':
+      return '购物/美食';
+    case '/home/photoes':
+      return '旅游/分享';
+    case '/comment':
+      return '评论';
+    default:
+      return '';
+  }
+}
+
 // 百度地图密钥
 export const baiduMap_AK = 'IcgnafKNldYZGjRjLiRqvcG09TQ5OAOd';

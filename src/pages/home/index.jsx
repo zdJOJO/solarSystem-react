@@ -1,15 +1,15 @@
 /**
  * Created by Administrator on 2017/03/23 0023.
  */
-import React from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useContext } from 'react';
+import { useHistory, useLocation } from "react-router-dom";
 
 import { Grid } from 'antd-mobile';
 
-import { menus } from '@/global';
+import { menus, getTitleName } from '@/global';
 
 import BaseSwiper from '../../components/common/BaseSwiper';
-
+import AppDispatch from '../bus';
 
 const data = menus.map(i => {
   return {
@@ -19,13 +19,19 @@ const data = menus.map(i => {
 })
 const Home = () => {
 
+  const dispatch = useContext(AppDispatch);
+
   let history = useHistory();
+  let location = useLocation();
 
   function handleClick(el, index) {
     if (menus[index].routePath === "#") return;
-    // console.log(menus[index].routePath);
     history.push(menus[index].routePath)
   }
+
+  // useEffect(() => {
+  //   dispatch({ type: 'SET_NAVTITLE', navTitle: getTitleName(location.pathname) });
+  // }, [])
 
   return (
     <section className="page">

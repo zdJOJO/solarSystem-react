@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-01 02:12:46
+ * @LastEditTime: 2020-09-02 15:25:59
  * @FilePath: \solarSystem-react\config\webpack.dev.js
  */
 const path = require('path')
@@ -32,7 +32,7 @@ const postcssOpts = {
   ],
 };
 
-const port = 3001;
+const port = 3010;
 
 module.exports = {
 

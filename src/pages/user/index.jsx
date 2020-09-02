@@ -1,12 +1,13 @@
 /**
  * Created by Administrator on 2017/03/23 0023.
  */
-import React, { Component } from 'react';
-import { Grid, Icon } from 'antd-mobile';
+import React from 'react';
+import { Grid } from 'antd-mobile';
 
 import BaseSkeleton from '@/components/common/BaseSkeleton/index';
 
 import { memberInfoMenus, myInfoMenes } from "@/global";
+import AppDispatch from '../bus';
 
 
 import './index.less';
@@ -25,78 +26,75 @@ const Item = ({ item }) => {
   )
 }
 
-class User extends Component {
-
-  render() {
-    return (
-      <div className="memberFirstBox">
-        <div className="memberInfo">
-          <div className="memberInfoBox">
-            <div className="headInfo headImg">
-              <img src={circleUrl} style={{ width: 50, height: 50 }} />
-            </div>
-            <div className="headInfo">
-              <p className="memberName">再见孙悟空</p>
-              <p className="tagBox">
-                <span className="memberTag">去认证 {`>`}</span>
-                <span className="memberTag">成长值345 {`>`}</span>
-              </p>
-            </div>
+function User() {
+  return (
+    <div className="memberFirstBox">
+      <div className="memberInfo">
+        <div className="memberInfoBox">
+          <div className="headInfo headImg">
+            <img src={circleUrl} style={{ width: 50, height: 50 }} />
           </div>
-
-          <ul className="memberMenuBox">
-            {
-              myInfoMenes.map((item, index) => <Item key={index} item={item} />)
-            }
-          </ul>
-
-        </div>
-        <div className="page">
-          <div className="informationContainer">
-            <div className="orderMenuBox">
-              <Grid
-                hasLine={false}
-                columnNum={5}
-                data={
-                  memberInfoMenus.map(item => {
-                    return {
-                      ...item,
-                      text: item.name,
-                      icon: item.imgName
-                    }
-                  })
-                }
-              />
-            </div>
-            <div className="orderMenuBox">
-              <BaseSkeleton width="5rem" />
-              <BaseSkeleton width="4rem" height="0.25rem" />
-              <BaseSkeleton width="5rem" />
-              <BaseSkeleton width="4rem" height="0.25rem" />
-            </div>
-            <div className="orderMenuBox">
-              <BaseSkeleton width="5rem" />
-              <BaseSkeleton width="4rem" height="0.25rem" />
-              <BaseSkeleton width="5rem" />
-              <BaseSkeleton width="4rem" height="0.25rem" />
-            </div>
-            <div className="orderMenuBox">
-              <BaseSkeleton width="5rem" />
-              <BaseSkeleton width="4rem" height="0.25rem" />
-              <BaseSkeleton width="5rem" />
-              <BaseSkeleton width="4rem" height="0.25rem" />
-            </div>
-            <div className="orderMenuBox">
-              <BaseSkeleton width="5rem" />
-              <BaseSkeleton width="4rem" height="0.25rem" />
-              <BaseSkeleton width="5rem" />
-              <BaseSkeleton width="4rem" height="0.25rem" />
-            </div>
+          <div className="headInfo">
+            <p className="memberName">再见孙悟空</p>
+            <p className="tagBox">
+              <span className="memberTag">去认证 {`>`}</span>
+              <span className="memberTag">成长值345 {`>`}</span>
+            </p>
           </div>
         </div>
-      </div >
-    )
-  }
+
+        <ul className="memberMenuBox">
+          {
+            myInfoMenes.map((item, index) => <Item key={index} item={item} />)
+          }
+        </ul>
+
+      </div>
+      <div className="page">
+        <div className="informationContainer">
+          <div className="orderMenuBox">
+            <Grid
+              hasLine={false}
+              columnNum={5}
+              data={
+                memberInfoMenus.map(item => {
+                  return {
+                    ...item,
+                    text: item.name,
+                    icon: item.imgName
+                  }
+                })
+              }
+            />
+          </div>
+          <div className="orderMenuBox">
+            <BaseSkeleton width="5rem" />
+            <BaseSkeleton width="4rem" height="0.25rem" />
+            <BaseSkeleton width="5rem" />
+            <BaseSkeleton width="4rem" height="0.25rem" />
+          </div>
+          <div className="orderMenuBox">
+            <BaseSkeleton width="5rem" />
+            <BaseSkeleton width="4rem" height="0.25rem" />
+            <BaseSkeleton width="5rem" />
+            <BaseSkeleton width="4rem" height="0.25rem" />
+          </div>
+          <div className="orderMenuBox">
+            <BaseSkeleton width="5rem" />
+            <BaseSkeleton width="4rem" height="0.25rem" />
+            <BaseSkeleton width="5rem" />
+            <BaseSkeleton width="4rem" height="0.25rem" />
+          </div>
+          <div className="orderMenuBox">
+            <BaseSkeleton width="5rem" />
+            <BaseSkeleton width="4rem" height="0.25rem" />
+            <BaseSkeleton width="5rem" />
+            <BaseSkeleton width="4rem" height="0.25rem" />
+          </div>
+        </div>
+      </div>
+    </div >
+  )
 }
 
 export default User;
