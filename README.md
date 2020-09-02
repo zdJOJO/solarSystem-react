@@ -26,6 +26,7 @@ npm run build
 [React 版本](https://github.com/zdJOJO/solarSystem-react)
 
 
+
 # 主要框架
 
 1. 视图框架
@@ -68,7 +69,10 @@ npm run build
 
 `yarn run build`
 
+# 存在问题
+1. reac-router  history.push{path, state} 通过 state传参 无效 ？
 
+2. 如何类似Vue watch 或者 守卫 监听路有变化？
 
 # 知识点
 
