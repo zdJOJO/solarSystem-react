@@ -39,7 +39,7 @@ npm run build
 
     ["react-router-V5"](https://reacttraining.com/react-router/web/guides/philosophy) : "^5.2.0"  
 
-    ["mobx"](https://cn.mobx.js.org/) :  "^5.15.6"
+    ["mobx"](https://cn.mobx.js.org/) :  "^5.15.6"  // 此项目用了 react 的 hook新特性， 没有使用mobx 进行状态管理
     
 
 2. http 异步请求框架
