@@ -73,15 +73,6 @@ function photoesReducer(state, action) {
         allPhotoes: [...temp]
       };
 
-
-    case 'SET_PAGE_NUM':
-      return { ...state, pageNum: action.pageNum };
-    case 'SET_GET_FETCHING':
-      return { ...state, isGetFetching: action.isGetFetching };
-    case 'SET_POST_FETCHING':
-      return { ...state, isPostFetching: action.isPostFetching };
-    case 'SET_SHOW_LOAD_MORE':
-      return { ...state, isShowLoadMore: action.isShowLoadMore };
     default:
       throw new Error();
   }
@@ -128,7 +119,7 @@ function Photoes() {
       )
     } else {
       return (
-        <div className="waterBox">
+        <div className="waterBox" id={`waterBox-${tab.id}`}>
           <div className="waterfall">
             {
               cloums.map(i => {
@@ -139,6 +130,7 @@ function Photoes() {
                       tempList.map(photoItem => (
                         <PhotoItem
                           key={photoItem.id}
+                          ctgId={tab.id}
                           photoItem={photoItem}
                         />
                       ))
@@ -156,6 +148,7 @@ function Photoes() {
   return (
     <div className="page photoes">
       <Tabs
+        destroyInactiveTab
         tabs={state.categories}
         initialPage={0}
         useOnPan={false}
@@ -181,7 +174,7 @@ function Photoes() {
           }
         }}
         onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
-        renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}
+        renderTabBar={props => <Tabs.DefaultTabBar {...props} page={5} />}
       >
         {renderContent}
       </Tabs>
@@ -190,4 +183,4 @@ function Photoes() {
   )
 }
 
-export default Photoes;
+export default React.memo(Photoes);

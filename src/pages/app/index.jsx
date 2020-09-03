@@ -56,6 +56,7 @@ function App() {
 
 
   function goBack(event) {
+    console.log(history.action);
     history.go(-1);
   }
 
@@ -76,7 +77,7 @@ function App() {
     <div className="app">
       <MainHeader
         title={state.navTitle}
-        isShowBack={location.pathname !== '/react'}
+        isShowBack={location.pathname !== '/'}
         handleClick={goBack}
       />
 
