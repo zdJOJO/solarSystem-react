@@ -1,0 +1,32 @@
+<!--
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-08-25 00:17:21
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-09-03 02:16:56
+ * @FilePath: \solarSystem-react\assets\templete.ejs
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1.0,maximum=scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- built files will be auto injected -->
+    <% if (htmlWebpackPlugin.options.insertJs && htmlWebpackPlugin.options.insertJs.length > 0) { %>
+    <% htmlWebpackPlugin.options.insertJs.forEach(function(item){ %>
+    <script type='text/javascript' src='<%= item %>'></script>
+    <% }); %>
+    <% } %>
+</body>
+
+</html>

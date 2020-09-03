@@ -13,7 +13,9 @@ import userDefault from '../../../assets/images/user_default.svg';
 
 import './index.less';
 
-const CommentItem = ({ comment }) => {
+
+
+const CommentItem = React.memo(({ comment }) => {
   return (
     <WingBlank size="md" >
       <WhiteSpace size="xs" />
@@ -47,7 +49,7 @@ const CommentItem = ({ comment }) => {
       <WhiteSpace size="md" />
     </WingBlank>
   )
-}
+});
 
 
 const initialState = {

@@ -25,9 +25,9 @@ function MainContent() {
     <main>
       <Switch>
         <Route exact path={ROUTE_PATH.HOME} component={createRouteView(Home)} />
-        <Route path={ROUTE_PATH.LOCATION} component={createRouteView(Location)} />
-        <Route path={ROUTE_PATH.CART} component={createRouteView(Cart)} />
-        <Route path={ROUTE_PATH.USER} component={createRouteView(User)} />
+        <Route exact path={ROUTE_PATH.LOCATION} component={createRouteView(Location)} />
+        <Route exact path={ROUTE_PATH.CART} component={createRouteView(Cart)} />
+        <Route exact path={ROUTE_PATH.USER} component={createRouteView(User)} />
         <Route exact path={ROUTE_PATH.COMMENT_LIST} component={createRouteView(Comments)} />
 
         <Route exact path={ROUTE_PATH.HOME_NEWS} component={createRouteView(NewsList)} />
@@ -36,7 +36,7 @@ function MainContent() {
         <Route exact path={ROUTE_PATH.HOME_GODDS} component={createRouteView(GoodsList)} />
         <Route exact path={ROUTE_PATH.HOME_GODDS_ID} component={createRouteView(GoodsInfo)} />
 
-        <Route path={ROUTE_PATH.HOME_PHOTOES} component={createRouteView(Photoes)} />
+        <Route exact path={ROUTE_PATH.HOME_PHOTOES} component={createRouteView(Photoes)} />
 
 
         <Redirect from="/*" to="/" />

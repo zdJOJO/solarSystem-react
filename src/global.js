@@ -42,6 +42,8 @@ export const cartBallTrasformTime = 600;  // 商品模块 加入购物车小球�
 // route path
 export const ROUTE_PATH = {
 
+  BASENAME: '/react',
+  
   HOME: '/',
   USER: '/user',
   SETTING: '/setting',

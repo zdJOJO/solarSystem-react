@@ -11,7 +11,8 @@ import { ROUTE_PATH } from '../../global';
 
 import "./index.less"
 
-const GoodsListItem = ({ good }) => {
+
+const GoodsListItem = React.memo(({ good }) => {
   let history = useHistory();
   return (
     <div
@@ -32,7 +33,7 @@ const GoodsListItem = ({ good }) => {
       </p>
     </div >
   )
-}
+});
 
 
 function GoodsList() {

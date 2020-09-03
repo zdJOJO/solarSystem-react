@@ -76,7 +76,7 @@ function App() {
     <div className="app">
       <MainHeader
         title={state.navTitle}
-        isShowBack={location.pathname !== '/' && location.pathname !== '/location' && location.pathname !== '/cart' && location.pathname !== '/user'}
+        isShowBack={location.pathname !== '/react'}
         handleClick={goBack}
       />
 

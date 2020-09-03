@@ -13,7 +13,10 @@ import './index.less';
 const CheckboxItem = Checkbox.CheckboxItem;
 
 // 购物车颗粒组件
-function CartItem({ cart, handleChange }) {
+
+
+
+const MemoCartItem = React.memo(function CartItem({ cart, handleChange }) {
 
   const [isChecked, set_isChecked] = useState(cart.selected)
 
@@ -85,9 +88,8 @@ function CartItem({ cart, handleChange }) {
         </Card>
       </SwipeAction>
     </div>
-
   )
-}
+});
 
 function Cart() {
 
@@ -185,7 +187,7 @@ function Cart() {
     <div className='page cart'>
       {
         cartData.map(item =>
-          <CartItem
+          <MemoCartItem
             key={item.id}
             cart={item}
             handleChange={changeCarts}

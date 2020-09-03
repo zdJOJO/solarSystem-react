@@ -12,7 +12,7 @@ import { transformTime, ROUTE_PATH } from '../../global';
 
 
 
-const NewsListItem = ({ news, loading }) => {
+const NewsListItem = React.memo(({ news, loading }) => {
   let history = useHistory();
   return (
     <WingBlank size="md" >
@@ -52,7 +52,7 @@ const NewsListItem = ({ news, loading }) => {
       <WhiteSpace size="md" />
     </WingBlank>
   )
-}
+});
 
 
 function NewsList() {
