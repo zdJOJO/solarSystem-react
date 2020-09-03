@@ -42,7 +42,7 @@ export const cartBallTrasformTime = 600;  // 商品模块 加入购物车小球�
 // route path
 export const ROUTE_PATH = {
 
-  BASENAME: '/react',
+  // BASENAME: '/react',
   
   HOME: '/',
   USER: '/user',
@@ -196,7 +196,7 @@ export const getRandomName = () => {
 export const getTitleName = (path) => {
   switch (path) {
     case '/':
-      return 'Solar System';
+      return 'Solar System React';
     case '/location':
       return '位置';
     case '/cart':

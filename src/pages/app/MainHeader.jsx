@@ -53,6 +53,7 @@ function MainTabBar({ title, isShowBack, handleClick }) {
   return (
     <NavBar
       mode="dark"
+      style={{color: '#303133'}}
       leftContent={isShowBack ? <Icon type="left" size="md" /> : ""}
       rightContent={[
         <Icon

@@ -35,10 +35,10 @@ function User() {
             <img src={circleUrl} style={{ width: 50, height: 50 }} />
           </div>
           <div className="headInfo">
-            <p className="memberName">再见孙悟空</p>
+            <p className="memberName">谪仙人</p>
             <p className="tagBox">
-              <span className="memberTag">去认证 {`>`}</span>
-              <span className="memberTag">成长值345 {`>`}</span>
+              <span className="memberTag certified">已认证{`✔`}</span>
+              <span className="memberTag">成长值999+ 👁‍🗨</span>
             </p>
           </div>
         </div>

@@ -33,7 +33,6 @@ ReactDOM.render(
   <Router
     forceRefresh={supportsHistory}
     getUserConfirmation={getUserConfirmation}
-    basename={ROUTE_PATH.BASENAME}
   >
     <App />
   </Router>

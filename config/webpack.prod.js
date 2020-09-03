@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-03 20:36:53
+ * @LastEditTime: 2020-09-04 01:11:20
  * @FilePath: \solarSystem-react\config\webpack.prod.js
  */
 const path = require('path')
@@ -25,17 +25,13 @@ const postcssOpts = {
 };
 
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const theme = require('../package.json').theme;
 
 module.exports = {
 
   devtool: 'cheap-module-eval-source-map', // or 'inline-source-map'
-
-  // entry: { 
-  //   "index": path.resolve(__dirname, '../src/index') 
-  // },
 
   entry: {
     "main": path.resolve(__dirname, '../src/index.js')
@@ -118,11 +114,6 @@ module.exports = {
     ]
   },
 
-  // externals: {
-  //   "react": "React",
-  //   "react-dom": "ReactDOM"
-  // },
-
   plugins: [
 
     // 设置环境变量
@@ -139,7 +130,7 @@ module.exports = {
         collapseWhitespace: true, // 删除空白符与换行符
         minifyCSS: true// 压缩内联css
       },
-      title: `Solar System React Version`,
+      title: `Solar System React`,
       filename: path.join(__dirname, "../dist/index.html"),
       favicon: path.join(__dirname, "../assets/favicon.ico"),
       template: path.join(__dirname, '../assets/templete.ejs'), // 指定模板文件路径, 使用ejs模板语法
@@ -149,13 +140,6 @@ module.exports = {
 
 
     new webpack.optimize.ModuleConcatenationPlugin(),
-
-
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   // minChunks: 2,
-    //   name: 'common',
-    //   filename: 'common.js'
-    // }),
 
 
     new webpack.optimize.UglifyJsPlugin({
@@ -191,6 +175,6 @@ module.exports = {
     //对于所有资源，统计资料(stat)的 emitted 标识都是 false
     new webpack.NoEmitOnErrorsPlugin(),
 
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()  生产环境移除
   ]
 }
