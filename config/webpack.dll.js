@@ -3,14 +3,14 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:44:32
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-03 18:37:44
+ * @LastEditTime: 2020-09-03 20:21:05
  * @FilePath: \solarSystem-react\config\webpack.dll.js
  */
 const path = require("path");
 const webpack = require("webpack");
 
 const vendors = [
-  "antd-mobile",
+  // "antd-mobile/lib", 已经按需加载
   "axios",
   "moment",
   "rc-form",
@@ -21,11 +21,11 @@ const vendors = [
 
 module.exports = {
   entry: {
-    react_vendor: vendors
+    vendor: vendors
   },
   output: {
     path: path.resolve(__dirname, "../dist/js"), //文件的输出路径
-    filename: "[name].js", // 输出的js文件名
+    filename: "[name].dll.reactV.js", // 输出的js文件名
     library: "[name]_library"
   },
   plugins: [

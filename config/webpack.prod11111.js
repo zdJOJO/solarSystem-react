@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-03 20:36:53
+ * @LastEditTime: 2020-09-03 20:20:55
  * @FilePath: \solarSystem-react\config\webpack.prod.js
  */
 const path = require('path')
@@ -69,48 +69,30 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                minimize: true,
-                importLoaders: 1
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: postcssOpts
-            }
-          ]
-        })
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: postcssOpts
+          }
+        ]
       },
       {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                minimize: true,
-                importLoaders: 2
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: postcssOpts
-            },
-            {
-              loader: 'less-loader',
-              options: { modifyVars: theme }
-            }
-          ]
-        })
+        test: /\.less$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: postcssOpts
+          },
+          {
+            loader: 'less-loader',
+            options: { modifyVars: theme }
+          }
+        ]
       },
-
-
       {
         test: /\.(jpg|png|gif|svg)$/,
         loader: "url-loader?limit=8192"
