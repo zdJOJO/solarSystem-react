@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getRandomName } from '@/global';
 import loadingImg from '../../../assets/images/loading.svg';
-import { set } from 'mobx';
 
 
 const PhotoItem = ({ photoItem, ctgId }) => {
@@ -25,8 +24,7 @@ const PhotoItem = ({ photoItem, ctgId }) => {
   }, [photoItem.id, ctgId])
 
   const changeImgSrc = (imgContainer) => {
-
-    if (!imgEle.current && isLoadSuccessful) return;
+    if (!imgEle || !imgEle.current || isLoadSuccessful) return;
     setTimeout(() => {
       offsetTop = imgEle.current.offsetTop;
       scrollTop = imgContainer.scrollTop;

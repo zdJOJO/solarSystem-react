@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-03 02:31:44
+ * @LastEditTime: 2020-09-03 18:43:38
  * @FilePath: \solarSystem-react\config\webpack.prod.js
  */
 const path = require('path')
@@ -24,6 +24,9 @@ const postcssOpts = {
   ],
 };
 
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const theme = require('../package.json').theme;
 
 module.exports = {
@@ -35,12 +38,12 @@ module.exports = {
   // },
 
   entry: {
-    app: path.resolve(__dirname, '../src/index.js')
+    "react_app": path.resolve(__dirname, '../src/index.js')
   },
 
   output: {
     path: path.join(__dirname, '../dist/js'),
-    publicPath: './js',  // publicPath：访问时文件的目录， 打包的js
+    publicPath: './js/',  // publicPath：访问时文件的目录， 打包的js
     filename: '[name].[hash:8].bundle.js',
     chunkFilename: '[name].[chunkhash:8].chunk.js'
   },
@@ -122,19 +125,20 @@ module.exports = {
       filename: path.join(__dirname, "../dist/index.html"),
       favicon: path.join(__dirname, "../assets/favicon.ico"),
       template: path.join(__dirname, '../assets/templete.ejs'), // 指定模板文件路径, 使用ejs模板语法
-      chunks: ["app"],  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
-      insertJs: [`./js/vendor_dll.js`]
+      chunks: ["react_app"],  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
+      chunksSortMode: 'manual',
+      insertJs: [`./js/react_vendor.js`]
     }),
 
 
     new webpack.optimize.ModuleConcatenationPlugin(),
 
 
-    new webpack.optimize.CommonsChunkPlugin({
-      // minChunks: 2,
-      name: 'common',
-      filename: 'common.js'
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   // minChunks: 2,
+    //   name: 'common',
+    //   filename: 'common.js'
+    // }),
 
 
     new webpack.optimize.UglifyJsPlugin({
@@ -168,6 +172,8 @@ module.exports = {
     //在编译出现错误时，使用 NoEmitOnErrorsPlugin 来跳过输出阶段。
     //这样可以确保输出资源不会包含错误。
     //对于所有资源，统计资料(stat)的 emitted 标识都是 false
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+
+    new BundleAnalyzerPlugin()
   ]
 }

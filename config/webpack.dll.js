@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:44:32
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-03 02:26:11
+ * @LastEditTime: 2020-09-03 18:37:44
  * @FilePath: \solarSystem-react\config\webpack.dll.js
  */
 const path = require("path");
@@ -15,17 +15,17 @@ const vendors = [
   "moment",
   "rc-form",
   "react",
-  "react-dom",
-  "react-router-dom"
+  "react-router-dom",
+  "react-dom"
 ];
 
 module.exports = {
   entry: {
-    vendor: vendors
+    react_vendor: vendors
   },
   output: {
     path: path.resolve(__dirname, "../dist/js"), //文件的输出路径
-    filename: "[name]_dll.js", // 输出的js文件名
+    filename: "[name].js", // 输出的js文件名
     library: "[name]_library"
   },
   plugins: [
