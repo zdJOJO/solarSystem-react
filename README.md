@@ -39,12 +39,15 @@ npm run build
 
     ["react-router-V5"](https://reacttraining.com/react-router/web/guides/philosophy) : "^5.2.0"  
 
-    ["mobx"](https://cn.mobx.js.org/) :  "^5.15.6"  // 此项目用了 react 的 hook新特性， 没有使用mobx 进行状态管理
-    
+    ["mobx"](https://cn.mobx.js.org/) :  "^5.15.6"
+
+    ```
+    此项目用了 react 的 hook新特性， 没有使用mobx 进行状态管理
+    ```
 
 2. http 异步请求框架
 
-    ["axios"]() :  "^0.20.0"
+    ["axios"](http://www.axios-js.com/zh-cn/docs/#axios-request-config) :  "^0.20.0"
 
 3. UI库
 
