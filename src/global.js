@@ -27,7 +27,6 @@ import my_comment from '../assets/images/评论.svg';
 import my_foot from '../assets/images/足迹.svg';
 import my_bag from '../assets/images/会员卡.svg';
 
-
 export const themeColor = "#ffd000"; // 主题颜色
 export const fontSize = "0.28rem";
 export const fontColor = "#303133"; // 字体颜色

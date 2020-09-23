@@ -3,35 +3,19 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-22 23:51:31
+ * @LastEditTime: 2020-09-23 22:11:57
  * @FilePath: \solarSystem-react\config\webpack.prod.js
  */
-const path = require('path')
-const webpack = require('webpack')
 
+const webpack = require('webpack')
+const path = require('path')
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common');
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const postcssOpts = {
-  ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
-  plugins: () => [
-    autoprefixer({
-      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
-    }),
-    // pxtorem({ rootValue: 100, propWhiteList: [] })
-  ],
-};
 
-
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-const theme = require('../package.json').theme;
-
-module.exports = {
-
-  devtool: 'cheap-module-eval-source-map', // or 'inline-source-map'
+module.exports = merge(common, {
+  devtool: 'inline-source-map', // or 'inline-source-map'
 
   entry: {
     "main": path.resolve(__dirname, '../src/index.js')
@@ -42,76 +26,6 @@ module.exports = {
     publicPath: './js/',  // publicPath：访问时文件的目录， 打包的js
     filename: '[name].[hash:8].bundle.js',
     chunkFilename: '[name].[chunkhash:8].chunk.js'
-  },
-
-  resolve: {
-    extensions: [".js", ".jsx", '.web.js', '.css', '.less', '.svg'], // import ** from 时，导入可以省略文件的拓展名
-    alias: {
-      '@': path.join(__dirname, '../src')
-    }
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.css$/i,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                minimize: true,
-                importLoaders: 1
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: postcssOpts
-            }
-          ]
-        })
-      },
-      {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                minimize: true,
-                importLoaders: 2
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: postcssOpts
-            },
-            {
-              loader: 'less-loader',
-              options: { modifyVars: theme }
-            }
-          ]
-        })
-      },
-
-
-      {
-        test: /\.(jpg|png|gif|svg)$/,
-        loader: "url-loader?limit=8192"
-      },
-    ]
   },
 
   plugins: [
@@ -138,10 +52,6 @@ module.exports = {
       insertJs: [`./js/vendor.dll.reactV.js`]
     }),
 
-
-    new webpack.optimize.ModuleConcatenationPlugin(),
-
-
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       beautify: false,  // 最紧凑的输出
@@ -154,27 +64,13 @@ module.exports = {
       },
       except: ["$super", "$", "exports", "require"]    //排除关键字
     }),
-
-    new ExtractTextPlugin({
-      filename: '[name].[contenthash].css',
-      allChunks: true
-    }),
-    // 用于优化或者压缩CSS资源 和 ExtractTextPlugin 一起使用
-    new OptimizeCssAssetsPlugin({
-      cssProcessorOptions: { discardComments: { removeAll: true } }
-    }),
+    new webpack.optimize.AggressiveMergingPlugin(),  //合并块
 
     // 和DllReferencePlugin配套使用 在webpack.dll.config.js中打包生成的dll文件引用到需要的预编译的依赖上来
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: require("../dist/manifest.json")
-    }),
+    })
 
-    //在编译出现错误时，使用 NoEmitOnErrorsPlugin 来跳过输出阶段。
-    //这样可以确保输出资源不会包含错误。
-    //对于所有资源，统计资料(stat)的 emitted 标识都是 false
-    new webpack.NoEmitOnErrorsPlugin(),
-
-    // new BundleAnalyzerPlugin()  //生产环境移除
   ]
-}
+})

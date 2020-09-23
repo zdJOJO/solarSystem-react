@@ -68,7 +68,8 @@
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "webpack-bundle-analyzer": "^3.8.0"
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-merge": "^5.1.4"
   },
   "bugs": {
     "url": "https://github.com/zdJOJO/solarSystem-react/issues"

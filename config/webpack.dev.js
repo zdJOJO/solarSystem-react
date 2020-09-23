@@ -3,46 +3,20 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-03 00:32:50
+ * @LastEditTime: 2020-09-23 22:03:26
  * @FilePath: \solarSystem-react\config\webpack.dev.js
  */
-const path = require('path')
+
 const webpack = require('webpack')
-const autoprefixer = require('autoprefixer');
-
+const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const Visualizer = require('webpack-visualizer-plugin'); // remove it in production environment.
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // remove it in production environment.
-const otherPlugins = process.argv[1].indexOf('webpack-dev-server') >= 0 ? [] : [
-  new Visualizer(), // remove it in production environment.
-  new BundleAnalyzerPlugin({
-    defaultSizes: 'parsed',
-    // generateStatsFile: true,
-    statsOptions: { source: false }
-  }), // remove it in production environment.
-];
-
-const theme = require('../package.json').theme;
-
-const postcssOpts = {
-  ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
-  plugins: () => [
-    autoprefixer({
-      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
-    }),
-    // pxtorem({ rootValue: 100, propWhiteList: [] })
-  ],
-};
-
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common');
 const port = 3001;
 
-module.exports = {
+module.exports = merge(common, {
 
-  devtool: 'cheap-module-eval-source-map', // or 'inline-source-map'
-
-  // entry: { 
-  //   "index": path.resolve(__dirname, '../src/index') 
-  // },
+  devtool: 'cheap-module-eval-source-map', // or 'inline-source-map',
 
   entry: [
     `webpack-dev-server/client?http://localhost:${port}`,
@@ -67,63 +41,6 @@ module.exports = {
     // }
   },
 
-  resolve: {
-    extensions: [".js", ".jsx", '.web.js', '.css', '.less', '.svg'], // import ** from 时，导入可以省略文件的拓展名
-    alias: {
-      '@': path.join(__dirname, '../src')
-    }
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: postcssOpts
-          }
-        ]
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: postcssOpts
-          },
-          {
-            loader: 'less-loader',
-            options: { modifyVars: theme }
-          }
-        ]
-      },
-      {
-        test: /\.(jpg|png|gif|svg)$/,
-        loader: "url-loader?limit=8192"
-      },
-    ]
-  },
-
-  // externals: {
-  //   "react": "React",
-  //   "react-dom": "ReactDOM"
-  // },
-
   plugins: [
 
     new HtmlWebpackPlugin({
@@ -135,23 +52,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
 
     //当开启 HMR 的时候使用该插件会显示模块的相对路径，建议用于开发环境。
-    new webpack.NamedModulesPlugin(),
+    new webpack.NamedModulesPlugin()
 
-    new webpack.optimize.ModuleConcatenationPlugin(),
-
-
-    //在编译出现错误时，使用 NoEmitOnErrorsPlugin 来跳过输出阶段。
-    //这样可以确保输出资源不会包含错误。
-    //对于所有资源，统计资料(stat)的 emitted 标识都是 false
-    new webpack.NoEmitOnErrorsPlugin(),
-
-
-    new webpack.optimize.CommonsChunkPlugin({
-      // minChunks: 2,
-      name: 'common',
-      filename: 'common.js'
-    }),
-    // new ExtractTextPlugin({ filename: '[name].[contenthash].css', allChunks: true }),
-    ...otherPlugins
   ]
-}
+
+});
