@@ -2,85 +2,64 @@
  * Created by zdjojo on 2017/03/23 0023.
  */
 
-import React from "react";
-
-import Home from "bundle-loader?lazy&name=home!../pages/home";
-import Location from "bundle-loader?lazy&name=location!../pages/location";
-import Cart from "bundle-loader?lazy&name=cart!../pages/cart";
-import User from "bundle-loader?lazy&name=user!../pages/user";
-import Comments from "bundle-loader?lazy&name=comments!../pages/comments";
-
-import NewsList from 'bundle-loader?lazy&name=newslist!../pages/news/NewsList';
-import NewsInfo from 'bundle-loader?lazy&name=newsinfo!../pages/news/NewsInfo';
-
-import Photoes from 'bundle-loader?lazy&name=photoes!../pages/photoes';
-
-import GoodsList from 'bundle-loader?lazy&name=goodsList!../pages/goods/GoodsList';
-import GoodsInfo from 'bundle-loader?lazy&name=goodsInfo!../pages/goods/GoodInfo';
-
+import { lazy } from 'react';
 import { ROUTE_PATH } from '../global';
-import Bundle from "../components/common/Bundle";
-
-
-const Loading = () => <div> loading...... </div>;
-
-const createRouteView = _component => () => (
-  <Bundle load={_component}>
-    {Component => Component ? <Component /> : <Loading />}
-  </Bundle>
-);
-
 
 const routes = [
   {
     exact: true,
     path: ROUTE_PATH.HOME,
-    component: createRouteView(Home)
+    component: lazy(() => import(/* webpackChunkName: "home" */ '../pages/home'))
   },
   {
     exact: true,
     path: ROUTE_PATH.LOCATION,
-    component: createRouteView(Location)
+    component: lazy(() => import(/* webpackChunkName: "location" */ '../pages/location'))
   },
   {
     exact: true,
     path: ROUTE_PATH.CART,
-    component: createRouteView(Cart)
+    component: lazy(() => import(/* webpackChunkName: "cart" */ '../pages/cart'))
   },
   {
     exact: true,
     path: ROUTE_PATH.USER,
-    component: createRouteView(User)
+    component: lazy(() => import(/* webpackChunkName: "user" */ '../pages/user'))
   },
   {
     exact: true,
     path: ROUTE_PATH.COMMENT_LIST,
-    component: createRouteView(Comments)
+    component: lazy(() => import(/* webpackChunkName: "comments" */ '../pages/comments'))
   },
   {
     exact: true,
     path: ROUTE_PATH.HOME_NEWS,
-    component: createRouteView(NewsList)
+    component: lazy(() => import(/* webpackChunkName: "newsList" */ '../pages/news/NewsList'))
   },
   {
     exact: true,
     path: ROUTE_PATH.HOME_NEWS_ID,
-    component: createRouteView(NewsInfo)
+    component: lazy(() => import(/* webpackChunkName: "newsInfo" */ '../pages/news/NewsInfo'))
   },
   {
     exact: true,
     path: ROUTE_PATH.HOME_PHOTOES,
-    component: createRouteView(Photoes)
+    component: lazy(() => import(/* webpackChunkName: "photoes" */ '../pages/photoes'))
   },
   {
     exact: true,
     path: ROUTE_PATH.HOME_GODDS,
-    component: createRouteView(GoodsList)
+    component: lazy(() => import(/* webpackChunkName: "goodsList" */ '../pages/goods/GoodsList'))
   },
   {
     exact: true,
     path: ROUTE_PATH.HOME_GODDS_ID,
-    component: createRouteView(GoodsInfo)
+    component: lazy(() => import(/* webpackChunkName: "goodsInfo" */ '../pages/goods/GoodInfo'))
+  },
+  {
+    exact: true,
+    path: ROUTE_PATH.HOME_MOVIES,
+    component: lazy(() => import(/* webpackChunkName: "movies" */ '../pages/movies'))
   }
 ];
 

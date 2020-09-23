@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { Carousel } from 'antd-mobile';
 
@@ -11,7 +11,7 @@ function BaseSwiper({ imgList, async }) {
   const [imgHeight, set_imgHeight] = useState(200)
 
   return (
-    <div>
+    <Fragment>
       <Carousel
         autoplay={true}
         infinite
@@ -43,7 +43,7 @@ function BaseSwiper({ imgList, async }) {
           </div>
         ))}
       </Carousel>
-    </div>
+    </Fragment>
   )
 }
 

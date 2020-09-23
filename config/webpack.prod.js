@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-04 01:11:20
+ * @LastEditTime: 2020-09-22 23:51:31
  * @FilePath: \solarSystem-react\config\webpack.prod.js
  */
 const path = require('path')
@@ -175,6 +175,6 @@ module.exports = {
     //对于所有资源，统计资料(stat)的 emitted 标识都是 false
     new webpack.NoEmitOnErrorsPlugin(),
 
-    // new BundleAnalyzerPlugin()  生产环境移除
+    // new BundleAnalyzerPlugin()  //生产环境移除
   ]
 }

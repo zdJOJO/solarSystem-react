@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-21 00:44:32
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-03 20:21:05
+ * @LastEditTime: 2020-09-22 23:45:34
  * @FilePath: \solarSystem-react\config\webpack.dll.js
  */
 const path = require("path");
@@ -16,7 +16,8 @@ const vendors = [
   "rc-form",
   "react",
   "react-router-dom",
-  "react-dom"
+  "react-dom",
+  "react-beautiful-dnd"
 ];
 
 module.exports = {

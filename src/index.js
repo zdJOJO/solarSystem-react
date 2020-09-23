@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-03 12:32:49
+ * @LastEditTime: 2020-09-22 20:32:12
  * @FilePath: \solarSystem-react\src\index.js
  */
 
@@ -15,7 +15,6 @@ import {
 } from "react-router-dom";
 
 import App from './pages/app/index';
-import { ROUTE_PATH } from './global';
 
 // 当导航需要确认时执行的函数
 const getUserConfirmation = (message, callback) => {

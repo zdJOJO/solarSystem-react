@@ -3,7 +3,7 @@ import { themeColor, fontSize } from "@/global";
 
 import './index.less';
 
-const BaseLoading = () => {
+export default () => {
   return (
     <div
       className="myLoading"
@@ -20,4 +20,3 @@ const BaseLoading = () => {
     </div>
   )
 }
-export default BaseLoading; 

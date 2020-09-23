@@ -43,7 +43,7 @@ export const cartBallTrasformTime = 600;  // 商品模块 加入购物车小球�
 export const ROUTE_PATH = {
 
   // BASENAME: '/react',
-  
+
   HOME: '/',
   USER: '/user',
   SETTING: '/setting',
@@ -62,14 +62,7 @@ export const ROUTE_PATH = {
   HOME_GODDS: '/home/goods',
   HOME_GODDS_ID: '/home/goods/:id',
 
-  // HOME_GODDS_DETAIL_ID: {
-  //   path: '/home/goodsdesc/:id',
-  //   name: 'goodsdesc'
-  // },
-  // HOME_GODDS_COMMENT_ID: {
-  //   path: '/home/goodscomment/:id',
-  //   name: 'goodscomment'
-  // }
+  HOME_MOVIES: '/home/movies'
 }
 
 // tabBar 导航
@@ -121,7 +114,7 @@ export const menus = [
   },
   {
     name: "番剧/电影",
-    routePath: "#",
+    routePath: ROUTE_PATH.HOME_MOVIES,
     imgName: menu4
   },
   {
