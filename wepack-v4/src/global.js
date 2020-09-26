@@ -1,4 +1,4 @@
-import moment from "moment"
+import moment from "dayjs"
 
 import home from '../assets/images/home.png';
 import home_fill from '../assets/images/home_fill.png';

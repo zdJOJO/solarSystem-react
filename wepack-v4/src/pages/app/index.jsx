@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { useLocation, useHistory } from "react-router-dom";
+import { hot } from 'react-hot-loader/root';
 
 
 import MainHeader from './MainHeader';
@@ -97,4 +98,4 @@ function App() {
   )
 }
 
-export default App;
+export default process.env.NODE_ENV === 'production' ? App : hot(App);
